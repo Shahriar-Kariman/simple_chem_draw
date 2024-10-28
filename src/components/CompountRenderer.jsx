@@ -2,7 +2,7 @@
 import MoleculeStructure from "../components/MoleculeStructure/MoleculeStructure"
 
 function CompountRenderer() {
-  const caffeine = "CN1C=NC2=C1C(=O)N(C(=O)N2C)"
+  const caffeine = "Oc1ccc2CC(N3C)C4C=CC(O)C5Oc1c2C45CC3"
   return (
     <div>
       <MoleculeStructure
