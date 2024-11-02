@@ -60,9 +60,9 @@ function App() {
           <div style={{background: '#505050' }}>
             <NavBar />
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='Live Editor' element={<LiveEditor setMol={setMol} />} />
-              <Route path='Home' element={<Home />} />
+              <Route path='/' element={<Home height={height} />} />
+              <Route path='Live Editor' element={<LiveEditor height={height} setMol={setMol} />} />
+              <Route path='Home' element={<Home height={height} />} />
             </Routes>
           </div>
         </Pane>

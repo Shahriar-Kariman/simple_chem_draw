@@ -1,31 +1,12 @@
 import { TextField } from '@mui/material';
 import React, { useState, useEffect } from 'react'
 
-function LiveEditor({ setMol }) {
-  
-  const [width, setWidth] = useState(window.innerWidth)
-  const [height, setHeight] = useState(window.innerHeight)
-  
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth)
-      setHeight(window.innerHeight)
-    }
-    
-    window.addEventListener('resize', handleResize)
-    
-    handleResize()
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+function LiveEditor({ height, setMol }) {
 
   return (
     <div style={
       {
-        height: `${height}px`, 
-        overflow: 'hidden',
+        height: `${height}px`,
         display: 'flex',
         justifyContent: 'center',
         padding: '12px'
