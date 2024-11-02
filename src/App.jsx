@@ -1,21 +1,75 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import NavBar from './components/NavBar'
 import { Route, Routes } from 'react-router'
 import Home from './components/Home'
 import LiveEditor from './components/LiveEditor'
+import SplitPane, { Pane } from 'split-pane-react'
+import 'split-pane-react/esm/themes/default.css'
+
+import CompountRenderer from './components/CompountRenderer'
 
 function App() {
 
+  const [sizes, setSizes] = useState([100, '12%', 'auto'])
+
+  const [split, setSplit] = useState('vertical')
+  
+  const layoutCSS = {
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+  
+  const [width, setWidth] = useState(window.innerWidth)
+  const [height, setHeight] = useState(window.innerHeight)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth)
+      setHeight(window.innerHeight)
+      if(window.innerWidth<900){
+        setSplit('horizontal')
+      }
+      else if(split.localeCompare('horizontal')){
+        setSplit('vertical')
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    handleResize()
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const [mol,setMol] = useState('')
+
   return (
-    <div>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='Live Editor' element={<LiveEditor />} />
-        <Route path='Home' element={<Home />} />
-      </Routes>
+    <div style={{ height: `${height}px` , overflow: 'hidden'}}>
+      <SplitPane
+        split={split}
+        sizes={sizes}
+        onChange={setSizes}
+      >
+        <Pane minSize={300} maxSize='60%' >
+          <div style={{background: '#505050' }}>
+            <NavBar />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='Live Editor' element={<LiveEditor setMol={setMol} />} />
+              <Route path='Home' element={<Home />} />
+            </Routes>
+          </div>
+        </Pane>
+        <div style={{ ...layoutCSS, background: '#ddaadd' }}>
+          <CompountRenderer mol={mol} />
+        </div>
+      </SplitPane>
     </div>
   )
 }
