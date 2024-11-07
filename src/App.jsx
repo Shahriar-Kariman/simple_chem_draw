@@ -57,14 +57,15 @@ function App() {
         onChange={setSizes}
       >
         <Pane minSize={300} maxSize='60%' >
-          <div style={{background: '#505050' }}>
+          <LiveEditor height={height} setMol={setMol} />
+          {/* <div style={{background: '#505050' }}>
             <NavBar />
             <Routes>
               <Route path='/' element={<Home height={height} />} />
               <Route path='Live Editor' element={<LiveEditor height={height} setMol={setMol} />} />
               <Route path='Home' element={<Home height={height} />} />
             </Routes>
-          </div>
+          </div> */}
         </Pane>
         <div style={{ ...layoutCSS, background: '#ddaadd' }}>
           <CompountRenderer mol={mol} />

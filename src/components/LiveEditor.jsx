@@ -18,11 +18,37 @@ function LiveEditor({ height, setMol }) {
         label='SMILES Notations'
         multiline
         fullWidth
+        inputProps={{ style: { color: "red" } }}
         onChange={
           (e)=>{
             setMol(e.target.value)
           }
         }
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            color: "#000",
+            fontFamily: "Arial",
+            fontWeight: "bold",
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#2e2e2e",
+              borderWidth: "2px",
+            },
+            "&.Mui-focused": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "secondary.main",
+                borderWidth: "3px",
+              },
+            },
+            "& .MuiInputLabel-outlined": {
+              color: "#2e2e2e",
+              fontWeight: "bold",
+              "&.Mui-focused": {
+                color: "secondary.main",
+                fontWeight: "bold",
+              },
+            },
+          },
+        }}
       />
     </div>
   )
