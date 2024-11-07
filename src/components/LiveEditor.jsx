@@ -66,31 +66,6 @@ function LiveEditor({ height, setMol }) {
               setMol(e.target.value)
             }
           }
-          // sx={{
-          //   "& .MuiOutlinedInput-root": {
-          //     color: "#000",
-          //     fontFamily: "Arial",
-          //     fontWeight: "bold",
-          //     "& .MuiOutlinedInput-notchedOutline": {
-          //       borderColor: "#008080",
-          //       borderWidth: "2px",
-          //     },
-          //     "&.Mui-focused": {
-          //       "& .MuiOutlinedInput-notchedOutline": {
-          //         borderColor: "#008080",
-          //         borderWidth: "3px",
-          //       },
-          //     },
-          //     "& .MuiInputLabel-outlined": {
-          //       color: "#008080",
-          //       fontWeight: "bold",
-          //       "&.Mui-focused": {
-          //         color: "secondary.main",
-          //         fontWeight: "bold",
-          //       },
-          //     },
-          //   },
-          // }}
         />
       </ThemeProvider>
     </div>
