@@ -14,3 +14,7 @@
 body {
   margin: 0;
 }
+
+.react-split__pane {
+  overflow: scroll;
+}

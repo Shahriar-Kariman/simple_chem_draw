@@ -50,14 +50,14 @@ function App() {
   const [mol,setMol] = useState('')
 
   return (
-    <div style={{ height: `${height}px` , overflow: 'hidden'}}>
+    <div style={{ height: `${height}px` }}>
       <SplitPane
         split={split}
         sizes={sizes}
         onChange={setSizes}
       >
         <Pane minSize={300} maxSize='60%' >
-          <LiveEditor height={height} setMol={setMol} />
+          <LiveEditor setMol={setMol} />
           {/* <div style={{background: '#505050' }}>
             <NavBar />
             <Routes>
