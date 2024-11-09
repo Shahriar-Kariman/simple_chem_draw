@@ -54,7 +54,7 @@ const theme = createTheme({
 
 function LiveEditor({ setMol, getMol }) {
 
-  const downloadSVGs = ()=>{
+  const download = (is_svg)=>{
     console.log("pressed")
     const svgs = [...document.querySelectorAll("svg")].slice(3)
     svgs.forEach(
@@ -65,13 +65,35 @@ function LiveEditor({ setMol, getMol }) {
           { type: "image/svg+xml;charset=utf-8" }
         )
         const url = URL.createObjectURL(blob)
-        const link = document.createElement('a')
-        link.href = url
-        link.download = "chemical_compound.svg" // now later when I have multiple compounds i need to adjust this
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-        URL.revokeObjectURL(url)
+        if (is_svg){
+          const link = document.createElement('a')
+          link.href = url
+          link.download = "chemical_compound.svg" // now later when I have multiple compounds i need to adjust this
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(url)
+        }
+        else {
+          const canvas = document.createElement("canvas")
+          // I opened the svg and this was its dimensions
+          canvas.width = 350
+          canvas.height = 300
+          const canv_context = canvas.getContext("2d")
+          const img = new Image()
+          img.onload = () =>{
+            canv_context.drawImage(img, 0, 0, 350, 300)
+            URL.revokeObjectURL(url)
+            const pngData_url = canvas.toDataURL("image/png")
+            const link = document.createElement("a")
+            link.href = pngData_url
+            link.download = "chemical_compound.png"
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+          }
+          img.src = url
+        }
       }
     )
   }
@@ -145,13 +167,22 @@ function LiveEditor({ setMol, getMol }) {
               <Button
                 variant='outlined'
                 fullWidth
-                >
+                onClick={
+                  ()=>{
+                    download(false)
+                  }
+                }
+              >
                 PNG
               </Button>
               <Button
                 variant='outlined'
                 fullWidth
-                onClick={downloadSVGs}
+                onClick={
+                  ()=>{
+                    download(true)
+                  }
+                }
               >
                 SVG
               </Button>
