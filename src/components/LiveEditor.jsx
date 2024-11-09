@@ -5,8 +5,15 @@ import Home from './Home';
 
 const theme = createTheme({
   components: {
-    palette: {
-      mode: 'dark',
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          background: "#292929",
+          boxShadow: "none",
+          margin: "0px",
+          color: "white",
+        },
+      }
     },
     MuiTextField: {
       styleOverrides: {
@@ -54,11 +61,12 @@ function LiveEditor({ setMol }) {
       }}
     >
       <ThemeProvider theme={theme} >
-        <Accordion>
+        <Accordion >
           <AccordionSummary
+            sx = {{ 'background': '#008080' }}
             expandIcon={<ArrowDownward />}
-            aria-controls="panel1-content"
-            id="panel1-header"
+            aria-controls="info-content"
+            id="info-header"
           >
             Info
           </AccordionSummary>
@@ -68,9 +76,10 @@ function LiveEditor({ setMol }) {
         </Accordion>
         <Accordion>
           <AccordionSummary
+            sx = {{ 'background': '#008080' }}
             expandIcon={<ArrowDownward />}
-            aria-controls="panel2-content"
-            id="panel2-header"
+            aria-controls="input-content"
+            id="input-header"
           >
             Input
           </AccordionSummary>
@@ -89,6 +98,7 @@ function LiveEditor({ setMol }) {
                   setMol(e.target.value)
                 }
               }
+              sx={{marginTop:'7px'}}
             />
           </AccordionDetails>
         </Accordion>
