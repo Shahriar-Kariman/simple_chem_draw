@@ -1,5 +1,5 @@
 import { ArrowDownward } from '@mui/icons-material';
-import { Accordion, AccordionDetails, AccordionSummary, TextField, ThemeProvider, createTheme } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Button, Stack, TextField, ThemeProvider, createTheme } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import Home from './Home';
 
@@ -100,6 +100,33 @@ function LiveEditor({ setMol }) {
               }
               sx={{marginTop:'7px'}}
             />
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            sx = {{ 'background': '#008080' }}
+            expandIcon={<ArrowDownward />}
+            aria-controls="input-content"
+            id="input-header"
+          >
+            Download
+          </AccordionSummary>
+          <AccordionDetails >
+            <Stack 
+              direction="row"
+              spacing={2}
+              sx={{
+                justifyContent: "space-evenly",
+                alignItems: "center"
+              }}
+            >
+              <Button variant='outlined' fullWidth >
+                PNG
+              </Button>
+              <Button variant='outlined' fullWidth >
+                SVG
+              </Button>
+            </Stack>
           </AccordionDetails>
         </Accordion>
       </ThemeProvider>
