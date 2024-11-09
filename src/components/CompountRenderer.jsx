@@ -6,7 +6,7 @@ function CompountRenderer({ mol }) {
   return (
     <div>
       <MoleculeStructure
-        id="structure-example-svg-caffeine"
+        id={mol ? mol : caffeine}
         structure={mol ? mol : caffeine}
         width={350}
         height={300}

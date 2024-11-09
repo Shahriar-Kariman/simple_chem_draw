@@ -57,7 +57,7 @@ function App() {
         onChange={setSizes}
       >
         <Pane minSize={300} maxSize='60%' >
-          <LiveEditor setMol={setMol} />
+          <LiveEditor setMol={setMol} getMol={()=>{return mol}} />
           {/* <div style={{background: '#505050' }}>
             <NavBar />
             <Routes>

@@ -52,7 +52,29 @@ const theme = createTheme({
   },
 });
 
-function LiveEditor({ setMol }) {
+function LiveEditor({ setMol, getMol }) {
+
+  const downloadSVGs = ()=>{
+    console.log("pressed")
+    const svgs = [...document.querySelectorAll("svg")].slice(3)
+    svgs.forEach(
+      (svg, index)=>{
+        const svgData = new XMLSerializer().serializeToString(svg)
+        const blob = new Blob(
+          [ svgData ],
+          { type: "image/svg+xml;charset=utf-8" }
+        )
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = "chemical_compound.svg" // now later when I have multiple compounds i need to adjust this
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+      }
+    )
+  }
 
   return (
     <div
@@ -120,10 +142,17 @@ function LiveEditor({ setMol }) {
                 alignItems: "center"
               }}
             >
-              <Button variant='outlined' fullWidth >
+              <Button
+                variant='outlined'
+                fullWidth
+                >
                 PNG
               </Button>
-              <Button variant='outlined' fullWidth >
+              <Button
+                variant='outlined'
+                fullWidth
+                onClick={downloadSVGs}
+              >
                 SVG
               </Button>
             </Stack>
