@@ -1,7 +1,7 @@
 import { ArrowDownward } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Button, Stack, TextField, ThemeProvider, createTheme } from '@mui/material'
 import React, { useState, useEffect } from 'react'
-import Home from './Home';
+import Info from './Info';
 
 const theme = createTheme({
   components: {
@@ -115,7 +115,7 @@ function LiveEditor({ setMol, getMol }) {
             Info
           </AccordionSummary>
           <AccordionDetails >
-            <Home />
+            <Info />
           </AccordionDetails>
         </Accordion>
         <Accordion>
