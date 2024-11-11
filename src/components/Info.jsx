@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Home({ height }) {
+function Info({ height }) {
   return (
     <div style={{ height: `${height}px`, padding: '12px' }}>
       <h1 id="simple-chem-draw">Simple Chem Draw</h1>
@@ -23,4 +23,4 @@ function Home({ height }) {
   )
 }
 
-export default Home
+export default Info
