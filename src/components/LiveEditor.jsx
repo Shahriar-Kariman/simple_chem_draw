@@ -199,7 +199,7 @@ function LiveEditor({ setMol, getMol }) {
           >
             Common Compounds
           </AccordionSummary>
-          <AccordionDetails >
+          <AccordionDetails sx={{ 'padding':'0px' }} >
             <CompoundLibrary />
           </AccordionDetails>
         </Accordion>

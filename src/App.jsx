@@ -12,7 +12,7 @@ import CompountRenderer from './components/CompountRenderer'
 
 function App() {
 
-  const [sizes, setSizes] = useState([100, '12%', 'auto'])
+  const [sizes, setSizes] = useState([100, '9%', 'auto'])
 
   const [split, setSplit] = useState('vertical')
   
