@@ -23,7 +23,20 @@ function CompoundLibrary() {
                       {compound.smilesNote}
                     </Typography>
                   </ListItemText>
-                  <IconButton aria-label='copy'>
+                  <IconButton
+                    aria-label='copy'
+                    onClick={
+                      ()=>{
+                        navigator.clipboard.writeText(compound.smilesNote)
+                        // .then(() => {
+                        //   alert("Text copied to clipboard!")
+                        // })
+                        // .catch(err => {
+                        //   console.error("Failed to copy text: ", err)
+                        // })
+                      }
+                    }
+                  >
                     <ContentCopyTwoTone style={{color:'white'}} />
                   </IconButton>
                 </ListItem>
