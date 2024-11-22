@@ -2,6 +2,7 @@ import { ArrowDownward } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Button, Stack, TextField, ThemeProvider, createTheme } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import Info from './Info';
+import CompoundLibrary from './CompoundLibrary';
 
 const theme = createTheme({
   components: {
@@ -187,6 +188,19 @@ function LiveEditor({ setMol, getMol }) {
                 SVG
               </Button>
             </Stack>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            sx = {{ 'background': '#008080' }}
+            expandIcon={<ArrowDownward />}
+            aria-controls="input-content"
+            id="input-header"
+          >
+            Common Compounds
+          </AccordionSummary>
+          <AccordionDetails >
+            <CompoundLibrary />
           </AccordionDetails>
         </Accordion>
       </ThemeProvider>
