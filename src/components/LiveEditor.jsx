@@ -57,46 +57,45 @@ function LiveEditor({ setMol, getMol }) {
 
   const download = (is_svg)=>{
     console.log("pressed")
-    const svgs = [...document.querySelectorAll("svg")].slice(3)
-    svgs.forEach(
-      (svg, index)=>{
-        const svgData = new XMLSerializer().serializeToString(svg)
-        const blob = new Blob(
-          [ svgData ],
-          { type: "image/svg+xml;charset=utf-8" }
-        )
-        const url = URL.createObjectURL(blob)
-        if (is_svg){
-          const link = document.createElement('a')
-          link.href = url
-          link.download = "chemical_compound.svg" // now later when I have multiple compounds i need to adjust this
+    const svgs = [...document.querySelectorAll("svg")]
+    const img_processer = (svg)=>{
+      const svgData = new XMLSerializer().serializeToString(svg)
+      const blob = new Blob(
+        [ svgData ],
+        { type: "image/svg+xml;charset=utf-8" }
+      )
+      const url = URL.createObjectURL(blob)
+      if (is_svg){
+        const link = document.createElement('a')
+        link.href = url
+        link.download = "chemical_compound.svg" // now later when I have multiple compounds i need to adjust this
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+      }
+      else {
+        const canvas = document.createElement("canvas")
+        // I opened the svg and this was its dimensions
+        canvas.width = 350
+        canvas.height = 300
+        const canv_context = canvas.getContext("2d")
+        const img = new Image()
+        img.onload = () =>{
+          canv_context.drawImage(img, 0, 0, 350, 300)
+          URL.revokeObjectURL(url)
+          const pngData_url = canvas.toDataURL("image/png")
+          const link = document.createElement("a")
+          link.href = pngData_url
+          link.download = "chemical_compound.png"
           document.body.appendChild(link)
           link.click()
           document.body.removeChild(link)
-          URL.revokeObjectURL(url)
         }
-        else {
-          const canvas = document.createElement("canvas")
-          // I opened the svg and this was its dimensions
-          canvas.width = 350
-          canvas.height = 300
-          const canv_context = canvas.getContext("2d")
-          const img = new Image()
-          img.onload = () =>{
-            canv_context.drawImage(img, 0, 0, 350, 300)
-            URL.revokeObjectURL(url)
-            const pngData_url = canvas.toDataURL("image/png")
-            const link = document.createElement("a")
-            link.href = pngData_url
-            link.download = "chemical_compound.png"
-            document.body.appendChild(link)
-            link.click()
-            document.body.removeChild(link)
-          }
-          img.src = url
-        }
+        img.src = url
       }
-    )
+    }
+    img_processer(svgs[svgs.length-1]) // the last image in the page is the compound
   }
 
   return (
